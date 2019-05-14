@@ -50,7 +50,17 @@ class TodoListViewController: SwipeTableViewController {
             cell.textLabel?.text = item.title
             
             if let color = UIColor(hexString: selectedCategory!.backgroundColor)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(toDoItems!.count)) {
-                 cell.backgroundColor = color
+                
+                let prevColor = UIColor(hexString: selectedCategory!.backgroundColor)?.darken(byPercentage: CGFloat(indexPath.row - 1 ) / CGFloat(toDoItems!.count))
+                let rectOfCell = tableView.rectForRow(at: indexPath)
+                //let rectOfCellInSuperview = tableView.convert(rectOfCell, to: tableView.superview)
+                
+                cell.backgroundColor = UIColor(gradientStyle: .topToBottom, withFrame: rectOfCell, andColors: [prevColor!, color])
+                
+                cell.layer.borderWidth = 0.25
+                cell.layer.borderColor = UIColor.gray.cgColor
+                
+                //cell.backgroundColor = color
                 cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
             }
             

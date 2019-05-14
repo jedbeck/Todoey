@@ -39,6 +39,7 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
             print("Delete Stuff")
             
             self.updateModel(at: indexPath)
+            //self.tableView.reloadData()
             
         }
         
